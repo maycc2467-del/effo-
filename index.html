@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effo易作 - AI智能写作助手 五导家深度复盘</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+
+        :root {
+            --primary: #4F46E5; /* Indigo 600 */
+            --secondary: #8B5CF6; /* Violet 500 */
+            --dark: #0F172A; /* Slate 900 */
+            --light: #F8FAFC; /* Slate 50 */
+            --accent: #06B6D4; /* Cyan 500 */
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background-color: #E2E8F0; /* Slate 200 */
+            color: var(--dark);
+        }
+
+        /* 16:9 Slide Container */
+        .slide-wrapper {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto 40px auto;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (max-width: 1200px) {
+            .slide-wrapper {
+                aspect-ratio: auto;
+                min-height: 80vh;
+                border-radius: 16px;
+                margin-bottom: 24px;
+            }
+        }
+
+        /* Scroll Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Elements */
+        .bg-gradient-ai { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); }
+        .bg-gradient-dark { background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%); }
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .mockup-shadow {
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
+            border-radius: 22px;
+            border: 6px solid #F1F5F9;
+        }
+        .mockup-shadow-dark {
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5);
+            border-radius: 22px;
+            border: 6px solid #334155;
+        }
+
+        .guide-step {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid #E2E8F0;
+        }
+        .guide-step::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        /* Before Wireframe Skeleton */
+        .skeleton-box {
+            background: repeating-linear-gradient( 45deg, #f1f5f9, #f1f5f9 10px, #e2e8f0 10px, #e2e8f0 20px );
+        }
+    </style>
+</head>
+<body class="antialiased py-10 px-4">
+
+    <!-- Header Navigation -->
+    <div class="max-w-[1440px] mx-auto mb-8 flex justify-between items-center px-4">
+        <h1 class="text-2xl font-black text-slate-800 tracking-tighter">EFFO<span class="text-indigo-600">.</span>DESIGN</h1>
+        <div class="flex gap-4 items-center">
+            <span class="px-3 py-1 bg-slate-200 rounded-full text-xs font-bold text-slate-600">Alibaba Five Guides</span>
+            <span class="px-3 py-1 bg-indigo-100 rounded-full text-xs font-bold text-indigo-600">UX Case Study</span>
+        </div>
+    </div>
+
+    <!-- Page 1: 封面 -->
+    <section class="slide-wrapper reveal active">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-[-20%] left-[-10%] w-[60%] h-[80%] bg-indigo-500 rounded-full mix-blend-multiply filter blur-[150px] opacity-20"></div>
+            <div class="absolute bottom-[-20%] right-[-10%] w-[60%] h-[80%] bg-violet-500 rounded-full mix-blend-multiply filter blur-[150px] opacity-20"></div>
+            <!-- Grid pattern -->
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0MHY0MEgweiIgZmlsbD0ibm9uZSIvPjxwb2x5Z29uIGZpbGw9IiNlNGEzZTEiIGZpbGwtb3BhY2l0eT0iMC4wNSIgcG9pbnRzPSIwIDQwIDQwIDAgNDAgNDAgMCA0MCIvPjwvc3ZnPg==')] opacity-50"></div>
+        </div>
+        <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-10">
+            <div class="inline-block px-5 py-2 rounded-full bg-indigo-50 text-indigo-600 font-bold text-sm mb-6 border border-indigo-100 shadow-sm tracking-widest">
+                AIGC PRODUCT REDESIGN
+            </div>
+            <h1 class="text-7xl md:text-9xl font-black mb-4 tracking-tighter text-slate-900">
+                Effo <span class="text-gradient">易作</span>
+            </h1>
+            <h2 class="text-3xl md:text-4xl font-medium text-slate-700 mb-12 tracking-wide">
+                全能AI智能写作助手·体验重塑
+            </h2>
+            <div class="flex gap-12 text-left mt-4 bg-white/80 backdrop-blur-xl p-8 rounded-3xl border border-white shadow-2xl">
+                <div>
+                    <p class="text-xs text-indigo-400 font-bold uppercase tracking-wider mb-2">Methodology</p>
+                    <p class="font-bold text-slate-800 text-lg">阿里五导家理论</p>
+                </div>
+                <div class="w-px bg-slate-200"></div>
+                <div>
+                    <p class="text-xs text-indigo-400 font-bold uppercase tracking-wider mb-2">Core Focus</p>
+                    <p class="font-bold text-slate-800 text-lg">商业转化 / 极简心流</p>
+                </div>
+                <div class="w-px bg-slate-200"></div>
+                <div>
+                    <p class="text-xs text-indigo-400 font-bold uppercase tracking-wider mb-2">Platform</p>
+                    <p class="font-bold text-slate-800 text-lg">iOS / Android</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 2: 竞品分析与切入点 -->
+    <section class="slide-wrapper reveal bg-slate-50">
+        <div class="p-16 h-full flex flex-col">
+            <div class="flex justify-between items-end mb-10 border-b border-slate-200 pb-6">
+                <div>
+                    <h3 class="text-indigo-600 font-black tracking-widest text-sm mb-2 uppercase">Market & Competitors</h3>
+                    <h2 class="text-4xl font-bold text-slate-900">市场洞察与竞品分析</h2>
+                </div>
+                <p class="text-slate-500 max-w-md text-right text-sm font-medium">在同质化严重的AI工具红海中，寻找Effo易作的差异化突破口。</p>
+            </div>
+            
+            <div class="flex-1 grid grid-cols-3 gap-8">
+                <!-- 竞品 A -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-xl transition-all">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-slate-300"></div>
+                    <h4 class="font-black text-xl mb-1 text-slate-800">Chat型通用大模型</h4>
+                    <p class="text-xs text-slate-500 mb-6">代表：ChatGPT / 文心一言</p>
+                    <div class="space-y-4">
+                        <div class="bg-red-50 text-red-700 p-4 rounded-xl text-sm border border-red-100">
+                            <span class="font-bold block mb-1"><i class="fas fa-times-circle mr-1"></i> 痛点缺陷</span>
+                            学习成本极高。普通用户面对“空白对话框”不知道如何写Prompt，生成的文章像机器翻译，废话多。
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl text-sm text-slate-600 border border-slate-100">
+                            <span class="font-bold block mb-1">交互特征</span>
+                            纯对话式流、高自由度但低掌控感。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 竞品 B -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-xl transition-all">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-slate-300"></div>
+                    <h4 class="font-black text-xl mb-1 text-slate-800">传统模版型AI写作</h4>
+                    <p class="text-xs text-slate-500 mb-6">代表：市面早期套壳小程序</p>
+                    <div class="space-y-4">
+                        <div class="bg-red-50 text-red-700 p-4 rounded-xl text-sm border border-red-100">
+                            <span class="font-bold block mb-1"><i class="fas fa-times-circle mr-1"></i> 痛点缺陷</span>
+                            模板死板，缺乏个性化调节能力。生成内容千篇一律，修改极度困难，无法满足细分场景的语气需求。
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl text-sm text-slate-600 border border-slate-100">
+                            <span class="font-bold block mb-1">交互特征</span>
+                            填表式，参数固定，结果页面静态。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 我们的产品 -->
+                <div class="bg-indigo-600 p-8 rounded-3xl border border-indigo-500 shadow-xl shadow-indigo-200 relative overflow-hidden transform scale-105 z-10">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl"><i class="fas fa-rocket"></i></div>
+                    <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cyan-400 to-violet-400"></div>
+                    <h4 class="font-black text-2xl mb-1 text-white">Effo 易作 (我们的机会)</h4>
+                    <p class="text-indigo-200 text-xs mb-6 font-medium">参数化向导 + 高度可控生成</p>
+                    <div class="space-y-4 relative z-10">
+                        <div class="bg-white/10 backdrop-blur text-white p-4 rounded-xl text-sm border border-white/20">
+                            <span class="font-bold text-cyan-300 block mb-1"><i class="fas fa-check-circle mr-1"></i> 破局策略</span>
+                            将复杂的Prompt转化为<b>可视化的选项卡片</b>（如语气、字数、角色）。既保留了生成的高质量，又将用户的操作门槛降到最低。
+                        </div>
+                        <div class="bg-white/10 backdrop-blur text-indigo-100 p-4 rounded-xl text-sm border border-white/10">
+                            <span class="font-bold block mb-1">定位结论</span>
+                            做一款“无需懂AI，也能写出大师级文章”的全能写作助手。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 3: 阿里五导家全景图 -->
+    <section class="slide-wrapper reveal bg-slate-900 text-white">
+        <div class="p-16 flex flex-col h-full justify-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-dark"></div>
+            <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-indigo-600/20 rounded-full mix-blend-screen filter blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
+            
+            <div class="relative z-10 text-center mb-16">
+                <h3 class="text-cyan-400 font-bold tracking-widest text-sm mb-3">FRAMEWORK</h3>
+                <h2 class="text-5xl font-black text-white">以“阿里五导家”贯穿设计全链路</h2>
+                <p class="text-slate-400 mt-4 max-w-2xl mx-auto font-medium">不再是凭直觉画图，而是从商业诉求出发，用数据验证结果的科学设计推导。</p>
+            </div>
+            
+            <div class="relative z-10 flex-1 flex items-center justify-center">
+                <!-- 5 Steps Flowchart -->
+                <div class="flex w-full justify-between items-start gap-4 px-10 relative">
+                    <!-- Line -->
+                    <div class="absolute top-10 left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 -z-10"></div>
+                    
+                    <div class="flex flex-col items-center flex-1">
+                        <div class="w-20 h-20 rounded-2xl bg-slate-800 border-2 border-indigo-500 flex items-center justify-center text-2xl font-black mb-6 shadow-[0_0_30px_rgba(79,70,229,0.3)]">01</div>
+                        <h4 class="font-bold text-lg mb-2">明确业务诉求</h4>
+                        <p class="text-xs text-slate-400 text-center">留存与商业转化<br>品牌心智建立</p>
+                    </div>
+                    <div class="flex flex-col items-center flex-1">
+                        <div class="w-20 h-20 rounded-2xl bg-slate-800 border-2 border-indigo-500 flex items-center justify-center text-2xl font-black mb-6 shadow-[0_0_30px_rgba(79,70,229,0.3)]">02</div>
+                        <h4 class="font-bold text-lg mb-2">洞见用户诉求</h4>
+                        <p class="text-xs text-slate-400 text-center">生成质量不可控<br>操作心智成本高</p>
+                    </div>
+                    <div class="flex flex-col items-center flex-1">
+                        <div class="w-20 h-20 rounded-2xl bg-slate-800 border-2 border-violet-500 flex items-center justify-center text-2xl font-black mb-6 shadow-[0_0_30px_rgba(139,92,246,0.3)]">03</div>
+                        <h4 class="font-bold text-lg mb-2 text-violet-300">定义设计策略</h4>
+                        <p class="text-xs text-slate-400 text-center">参数可视化<br>增强购买诱导</p>
+                    </div>
+                    <div class="flex flex-col items-center flex-1">
+                        <div class="w-20 h-20 rounded-2xl bg-slate-800 border-2 border-cyan-500 flex items-center justify-center text-2xl font-black mb-6 shadow-[0_0_30px_rgba(6,182,212,0.3)]">04</div>
+                        <h4 class="font-bold text-lg mb-2 text-cyan-300">确定设计目标</h4>
+                        <p class="text-xs text-slate-400 text-center">缩短操作时长<br>降低不满意率</p>
+                    </div>
+                    <div class="flex flex-col items-center flex-1 transform scale-110 origin-top">
+                        <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-400 to-indigo-600 border-2 border-white flex items-center justify-center text-2xl font-black mb-6 shadow-[0_0_40px_rgba(6,182,212,0.6)] text-white">05</div>
+                        <h4 class="font-bold text-xl mb-2 text-white">产出与度量</h4>
+                        <p class="text-xs text-cyan-100 text-center">极致体验重塑<br>数据复盘验证</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 4: 导家01 业务诉求 -->
+    <section class="slide-wrapper reveal bg-white">
+        <div class="grid grid-cols-12 h-full">
+            <div class="col-span-5 bg-slate-50 p-16 flex flex-col justify-center border-r border-slate-100">
+                <div class="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 font-black text-sm rounded mb-6">GUIDE 01</div>
+                <h2 class="text-4xl font-black text-slate-900 mb-6">明确业务诉求<br><span class="text-2xl text-slate-500 font-medium">Business Demands</span></h2>
+                <p class="text-slate-600 mb-8 leading-relaxed">
+                    产品在前期积累了一定流量，但随着内容创作工具的竞争加剧，面临着<span class="font-bold text-red-500 bg-red-50 px-1">用完即走</span>的工具宿命。公司核心诉求是：在存量博弈中，提升粘性并跑通商业化变现闭环。
+                </p>
+                <div class="space-y-6 border-t border-slate-200 pt-8">
+                    <div class="guide-step">
+                        <h4 class="font-bold text-slate-800">留存与活跃</h4>
+                        <p class="text-sm text-slate-500">吸引更多用户使用并长期留存，提高月均使用频次。</p>
+                    </div>
+                    <div class="guide-step">
+                        <h4 class="font-bold text-slate-800">变现转化</h4>
+                        <p class="text-sm text-slate-500">通过会员权益包装，实现付费盈利增长。</p>
+                    </div>
+                    <div class="guide-step">
+                        <h4 class="font-bold text-slate-800">品牌心智</h4>
+                        <p class="text-sm text-slate-500">树立科技、易用的差异化品牌形象。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-7 p-16 flex flex-col justify-center bg-white relative">
+                <!-- Data Visualizations -->
+                <h3 class="text-lg font-bold text-slate-800 mb-8">核心业务指标拆解 (KPIs)</h3>
+                
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Target 1 -->
+                    <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xl shadow-slate-200/50 relative overflow-hidden">
+                        <div class="absolute -right-4 -top-4 w-24 h-24 bg-indigo-50 rounded-full z-0"></div>
+                        <div class="relative z-10">
+                            <p class="text-slate-500 font-bold mb-2 uppercase text-xs tracking-wider">Target 01 / 活跃留存</p>
+                            <h4 class="text-xl font-black text-slate-800 mb-6">月留存率提升</h4>
+                            <div class="flex items-end gap-4 mb-2">
+                                <div class="w-16 h-12 bg-slate-200 rounded-t-lg flex items-center justify-center text-slate-500 font-bold">30%</div>
+                                <div class="text-indigo-500 text-xl mb-2"><i class="fas fa-arrow-right"></i></div>
+                                <div class="w-20 h-24 bg-indigo-600 rounded-t-lg flex items-center justify-center text-white font-black text-2xl shadow-lg">45%</div>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-4 border-t pt-4">需解决“结果不满意导致流失”的问题。</p>
+                        </div>
+                    </div>
+
+                    <!-- Target 2 -->
+                    <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xl shadow-slate-200/50 relative overflow-hidden">
+                        <div class="absolute -right-4 -top-4 w-24 h-24 bg-violet-50 rounded-full z-0"></div>
+                        <div class="relative z-10">
+                            <p class="text-slate-500 font-bold mb-2 uppercase text-xs tracking-wider">Target 02 / 商业变现</p>
+                            <h4 class="text-xl font-black text-slate-800 mb-6">付费转化率提升</h4>
+                            <div class="flex items-end gap-4 mb-2">
+                                <div class="w-16 h-8 bg-slate-200 rounded-t-lg flex items-center justify-center text-slate-500 font-bold">5%</div>
+                                <div class="text-violet-500 text-xl mb-2"><i class="fas fa-arrow-right"></i></div>
+                                <div class="w-20 h-16 bg-violet-500 rounded-t-lg flex items-center justify-center text-white font-black text-2xl shadow-lg">8%</div>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-4 border-t pt-4">需优化付费触点与特权感知设计。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 5: 导家02 用户诉求与痛点 -->
+    <section class="slide-wrapper reveal bg-slate-900 text-white">
+        <div class="p-16 h-full flex flex-col">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <div class="inline-block px-3 py-1 bg-violet-900 text-violet-300 border border-violet-700 font-black text-sm rounded mb-6">GUIDE 02</div>
+                    <h2 class="text-4xl font-black text-white">洞见用户诉求与痛点</h2>
+                </div>
+                <p class="text-slate-400 max-w-md text-right text-sm">通过用户访谈与数据漏斗分析，我们提取了导致留存低下的核心体验阻碍。</p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-8 flex-1">
+                <!-- Pain point 1 -->
+                <div class="bg-slate-800 rounded-3xl p-8 border border-slate-700 hover:-translate-y-2 transition-transform">
+                    <div class="w-14 h-14 rounded-2xl bg-red-500/20 text-red-400 flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">认知门槛高</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">面对空白的输入框，普通小白用户不知道如何撰写高质量的“Prompt（提示词）”，导致频繁报错或结果敷衍。</p>
+                    <div class="bg-slate-900 p-4 rounded-xl text-xs text-slate-500 border border-slate-800">
+                        <span class="text-red-400 font-bold">原声：</span>“我只是想写个请假条，它问我需要什么角色和框架，我懵了。”
+                    </div>
+                </div>
+
+                <!-- Pain point 2 -->
+                <div class="bg-slate-800 rounded-3xl p-8 border border-slate-700 hover:-translate-y-2 transition-transform">
+                    <div class="w-14 h-14 rounded-2xl bg-orange-500/20 text-orange-400 flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">生成质量像“机器”</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">生成的内容质量极不稳定，经常出现强烈的“AI机翻味”，难以匹配用户心中特定场景下的语气（如：小红书风、严肃公文）。</p>
+                    <div class="bg-slate-900 p-4 rounded-xl text-xs text-slate-500 border border-slate-800">
+                        <span class="text-orange-400 font-bold">原声：</span>“写出来的文章太官方了，根本没法直接发朋友圈。”
+                    </div>
+                </div>
+
+                <!-- Pain point 3 -->
+                <div class="bg-slate-800 rounded-3xl p-8 border border-slate-700 hover:-translate-y-2 transition-transform">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">修改链路繁琐</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">如果对结果不满意，用户需要重新打字补充指令才能修改，缺乏所见即所得的快捷编辑和重写工具，操作费时。</p>
+                    <div class="bg-slate-900 p-4 rounded-xl text-xs text-slate-500 border border-slate-800">
+                        <span class="text-blue-400 font-bold">原声：</span>“想让它把第二段改精简点，来回对话了5次都没改对。”
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 6: 导家03 & 04 策略与目标 -->
+    <section class="slide-wrapper reveal bg-light">
+        <div class="p-16 h-full flex flex-col justify-center">
+            <div class="text-center mb-12">
+                <div class="inline-block px-3 py-1 bg-cyan-100 text-cyan-700 font-black text-sm rounded mb-4">GUIDE 03 & 04</div>
+                <h2 class="text-4xl font-black text-slate-900 mb-4">从策略制定到设计目标的推导</h2>
+                <p class="text-slate-500">将业务与用户的双向痛点，转化为可执行、可度量的设计指南。</p>
+            </div>
+
+            <div class="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8 relative">
+                <!-- Divider Line -->
+                <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-slate-200 -translate-x-1/2"></div>
+                <div class="hidden md:block absolute left-1/2 top-1/2 w-8 h-8 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center -translate-x-1/2 -translate-y-1/2 text-sm z-10"><i class="fas fa-exchange-alt"></i></div>
+
+                <!-- Header -->
+                <div class="text-center md:text-right font-black text-xl text-slate-400 tracking-wider">03. 业务策略 (Strategy)</div>
+                <div class="text-center md:text-left font-black text-xl text-indigo-600 tracking-wider">04. 设计目标 (Goals)</div>
+
+                <!-- Pair 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-right">
+                    <h4 class="font-bold text-slate-800 mb-2">优化底层框架，提升内容质量</h4>
+                    <p class="text-sm text-slate-500">将单一输入转化为多维参数输入，引入语气/角色模型微调。</p>
+                </div>
+                <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100 shadow-sm flex items-center">
+                    <div>
+                        <h4 class="font-bold text-indigo-800 mb-1 flex items-center gap-2"><i class="fas fa-bullseye text-indigo-500"></i> 降低结果不满意率</h4>
+                        <p class="text-sm text-indigo-600/80">设计“语气选择器”，让系统准确捕捉情绪；增加一键重写/润色工具栏。</p>
+                    </div>
+                </div>
+
+                <!-- Pair 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-right">
+                    <h4 class="font-bold text-slate-800 mb-2">简化操作流程，降低门槛</h4>
+                    <p class="text-sm text-slate-500">用UI选择题代替填空题，系统预设优质Prompt模板。</p>
+                </div>
+                <div class="bg-violet-50 p-6 rounded-2xl border border-violet-100 shadow-sm flex items-center">
+                    <div>
+                        <h4 class="font-bold text-violet-800 mb-1 flex items-center gap-2"><i class="fas fa-stopwatch text-violet-500"></i> 缩短平均操作时长</h4>
+                        <p class="text-sm text-violet-600/80">采用步进式表单结构，视觉层级分明，实现“3次点击内出稿”。</p>
+                    </div>
+                </div>
+
+                <!-- Pair 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-right">
+                    <h4 class="font-bold text-slate-800 mb-2">增强商业触点与挽留机制</h4>
+                    <p class="text-sm text-slate-500">在功能阻断点前置特权说明，在流失点增加情感挽留。</p>
+                </div>
+                <div class="bg-cyan-50 p-6 rounded-2xl border border-cyan-100 shadow-sm flex items-center">
+                    <div>
+                        <h4 class="font-bold text-cyan-800 mb-1 flex items-center gap-2"><i class="fas fa-chart-line text-cyan-500"></i> 提升界面满意度与转化</h4>
+                        <p class="text-sm text-cyan-600/80">重塑品牌UI风格为科技尊享感，设计高转化购买页与情绪化挽留弹窗。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 7: 导家05(上) 核心痛点改版分析 Before/After -->
+    <section class="slide-wrapper reveal bg-slate-900 text-white">
+        <div class="grid grid-cols-12 h-full">
+            <div class="col-span-12 p-10 pb-4">
+                <div class="inline-block px-3 py-1 bg-gradient-to-r from-indigo-500 to-cyan-500 text-white font-black text-sm rounded mb-2 shadow-lg">GUIDE 05 - DESIGN SOLUTIONS</div>
+                <h2 class="text-3xl font-black mb-2">核心改版对比：从“面对白纸”到“向导配置”</h2>
+                <p class="text-slate-400 text-sm">彻底抛弃传统的空白大文本框设计，用卡片化参数重构输入逻辑。</p>
+            </div>
+            
+            <!-- Before -->
+            <div class="col-span-5 px-10 flex flex-col items-center">
+                <div class="w-full max-w-[280px] bg-slate-800 rounded-[30px] p-4 border border-slate-700 shadow-xl opacity-80 relative">
+                    <div class="absolute -top-4 -left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10">V1.0 (旧版)</div>
+                    <!-- Skeleton UI for Before -->
+                    <div class="w-full h-12 flex justify-between items-center border-b border-slate-700 mb-4 pb-2">
+                        <div class="w-6 h-6 rounded-full bg-slate-600"></div>
+                        <div class="w-20 h-4 rounded bg-slate-600"></div>
+                        <div class="w-6 h-6 rounded-full bg-slate-600"></div>
+                    </div>
+                    <div class="w-full h-64 skeleton-box rounded-xl border border-slate-600 p-3 mb-4">
+                        <div class="w-1/2 h-4 bg-slate-400 rounded mb-2"></div>
+                        <p class="text-xs text-slate-500">在这里输入您的要求...</p>
+                    </div>
+                    <div class="w-full h-12 bg-slate-600 rounded-xl"></div>
+                </div>
+                <div class="mt-6 w-full max-w-[280px]">
+                    <h4 class="text-red-400 font-bold mb-2"><i class="fas fa-times"></i> 旧版痛点</h4>
+                    <ul class="text-xs text-slate-400 space-y-2">
+                        <li>- 大面积空白，导致“不知道写什么”的认知瘫痪。</li>
+                        <li>- 无法精准控制语气和字数，纯靠打字描述，极度费时。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-span-2 flex items-center justify-center text-4xl text-slate-600">
+                <i class="fas fa-angle-double-right animate-pulse"></i>
+            </div>
+
+            <!-- After -->
+            <div class="col-span-5 px-10 flex flex-col items-center">
+                <div class="w-full max-w-[280px] rounded-[30px] p-2 mockup-shadow-dark relative bg-slate-100 z-10 transform scale-105">
+                    <div class="absolute -top-4 -right-4 bg-gradient-to-r from-indigo-500 to-cyan-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-20">V2.0 (改版后)</div>
+                    <img src="AI全能写作.jpg" alt="AI全能写作新版" class="w-full rounded-[22px]" onerror="this.src='https://via.placeholder.com/400x800/4F46E5/FFF?text=New+UI+Design'">
+                </div>
+                <div class="mt-6 w-full max-w-[280px]">
+                    <h4 class="text-cyan-400 font-bold mb-2"><i class="fas fa-check"></i> 优化策略</h4>
+                    <ul class="text-xs text-slate-300 space-y-2">
+                        <li>- <b>模块化表单：</b>将要求拆分为标题、字数、正文等独立模块。</li>
+                        <li>- <b>卡片化排版：</b>利用阴影区隔层级，视线跟随更顺畅。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 8: 导家05(中) 设计方案详解一：极简创作心流 -->
+    <section class="slide-wrapper reveal bg-white">
+        <div class="p-16 h-full flex flex-col">
+            <h2 class="text-3xl font-black text-slate-900 mb-8 border-l-8 border-indigo-600 pl-4">方案一：极简创作心流，降低“不满意率”</h2>
+            
+            <div class="flex-1 grid grid-cols-12 gap-10">
+                <!-- UI 展示 -->
+                <div class="col-span-6 flex gap-6 items-center justify-center bg-slate-50 rounded-3xl relative overflow-hidden p-6">
+                    <div class="absolute inset-0 bg-indigo-50/50 mix-blend-multiply opacity-50"></div>
+                    
+                    <div class="w-[220px] mockup-shadow rounded-[24px] overflow-hidden bg-white z-10 transform -rotate-3 hover:rotate-0 hover:scale-105 transition-all">
+                        <img src="AI全能写作-选择语气.jpg" alt="选择语气" class="w-full" onerror="this.src='https://via.placeholder.com/400x800/E2E8F0/4F46E5?text=Tone+Selection'">
+                    </div>
+                    <div class="w-[220px] mockup-shadow rounded-[24px] overflow-hidden bg-white z-20 transform scale-105 hover:scale-110 transition-all">
+                        <img src="AI全能写作结果页面.jpg" alt="写作结果" class="w-full" onerror="this.src='https://via.placeholder.com/400x800/E2E8F0/8B5CF6?text=Result+Page'">
+                    </div>
+                </div>
+
+                <!-- 逻辑推导分析 -->
+                <div class="col-span-6 flex flex-col justify-center gap-8">
+                    <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-lg"><i class="fas fa-tags"></i></div>
+                            <h3 class="text-xl font-bold text-slate-800">可视化“语气选择器”</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <span class="font-bold text-indigo-600">设计意图：</span>解决机器生成内容生硬的问题。<br>
+                            放弃了隐藏在深处的设置，通过底部弹窗形式，将常用的情绪特征（幽默、严谨、小红书风）封装成 <span class="bg-slate-100 px-2 rounded border border-slate-200 text-xs font-bold">Tag标签阵列</span>。用户仅需点选，底层会自动在Prompt中加入强烈的风格约束语句，直接降低了生成结果的不满意率。
+                        </p>
+                    </div>
+
+                    <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-full bg-violet-100 text-violet-600 flex items-center justify-center text-lg"><i class="fas fa-magic"></i></div>
+                            <h3 class="text-xl font-bold text-slate-800">沉浸式结果与浮动操作台</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <span class="font-bold text-violet-600">设计意图：</span>缩短修改链路。<br>
+                            结果页面采用大面积留白的排版优化阅读体验。下方固定提供高频动作区（复制、润色、重写）。当内容生成结束，无需二次打字，一键即可进行二次加工，极大地缩短了平均操作时长。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 9: 导家05(下) 设计方案详解二：商业增长 -->
+    <section class="slide-wrapper reveal bg-gradient-dark text-white">
+        <div class="p-16 h-full flex flex-col relative overflow-hidden">
+            <!-- Background element -->
+            <div class="absolute right-0 bottom-0 text-[300px] opacity-5 text-indigo-500 transform translate-x-1/4 translate-y-1/4"><i class="fas fa-chart-pie"></i></div>
+            
+            <h2 class="text-3xl font-black text-white mb-8 border-l-8 border-cyan-400 pl-4 relative z-10">方案二：增长设计，助力商业转化与留存</h2>
+            
+            <div class="flex-1 grid grid-cols-12 gap-12 relative z-10">
+                <!-- Text Analysis -->
+                <div class="col-span-5 flex flex-col justify-center gap-8">
+                    <p class="text-slate-300 text-sm mb-4 leading-relaxed">
+                        作为工具产品，不仅要好用，更要能赚钱。根据业务策略，我们在产品的核心触点埋入了“诱导转化”与“损失厌恶”的增长设计模型。
+                    </p>
+
+                    <div class="bg-slate-800/80 backdrop-blur border border-slate-700 p-6 rounded-2xl border-l-4 border-l-cyan-400">
+                        <h3 class="text-lg font-bold text-white mb-2">① 尊享感锚点：功能解锁页</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-3">
+                            采用区别于常规页面的<span class="text-cyan-300">暗黑质感与流光渐变</span>，强化会员的“Pro”高级属性。界面核心运用<b>“锚点对比效应”</b>，左右或上下清晰罗列免费版（受限）与高级版（无限）的特权差异，直击痛点，刺激订阅转化。
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-800/80 backdrop-blur border border-slate-700 p-6 rounded-2xl border-l-4 border-l-red-400">
+                        <h3 class="text-lg font-bold text-white mb-2">② 情感化阻拦：挽留弹窗设计</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            在用户准备退出核心创作流程或尝试取消订阅时触发。运用<b>“损失厌恶”</b>心理，文案采用“灵感正在流失”等具有情绪价值的表述，同时配以强对比按钮（主按钮继续，弱化退出），配合视觉插画，有效拦截流失。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Images -->
+                <div class="col-span-7 flex justify-center items-center gap-8 relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-900/20 to-transparent blur-3xl"></div>
+                    <div class="w-[260px] mockup-shadow-dark rounded-[24px] overflow-hidden bg-slate-900 z-20">
+                        <img src="解锁功能.png" alt="解锁功能页" class="w-full" onerror="this.src='https://via.placeholder.com/400x800/0F172A/06B6D4?text=Premium+Unlock'">
+                    </div>
+                    <div class="w-[260px] mockup-shadow-dark rounded-[24px] overflow-hidden bg-slate-900 z-10 transform scale-95 translate-y-8">
+                        <img src="挽留弹窗.jpg" alt="挽留弹窗" class="w-full" onerror="this.src='https://via.placeholder.com/400x800/0F172A/EF4444?text=Retention+Popup'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 10: 视觉系统 UI 概览 -->
+    <section class="slide-wrapper reveal bg-slate-50">
+        <div class="p-16 h-full flex flex-col">
+            <h2 class="text-3xl font-black text-slate-900 mb-10 text-center">UI 体验矩阵集锦</h2>
+            
+            <div class="flex-1 flex items-center justify-center gap-6 overflow-hidden pb-8 px-4">
+                <!-- Screen 1 -->
+                <div class="flex flex-col items-center group">
+                    <div class="w-[200px] h-[430px] rounded-[24px] overflow-hidden mockup-shadow bg-white transition-transform duration-500 group-hover:-translate-y-4">
+                        <img src="启动页.png" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/300x600/E2E8F0/4F46E5?text=Launch'">
+                    </div>
+                    <p class="mt-4 font-bold text-slate-700 text-sm">品牌启动页</p>
+                </div>
+                <!-- Screen 2 -->
+                <div class="flex flex-col items-center group">
+                    <div class="w-[200px] h-[430px] rounded-[24px] overflow-hidden mockup-shadow bg-white transition-transform duration-500 group-hover:-translate-y-4 delay-75">
+                        <img src="登录.png" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/300x600/E2E8F0/4F46E5?text=Login'">
+                    </div>
+                    <p class="mt-4 font-bold text-slate-700 text-sm">极简登录页</p>
+                </div>
+                <!-- Screen 3 -->
+                <div class="flex flex-col items-center group">
+                    <div class="w-[200px] h-[430px] rounded-[24px] overflow-hidden mockup-shadow bg-white transition-transform duration-500 group-hover:-translate-y-4 delay-150">
+                        <img src="首页.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/300x600/E2E8F0/4F46E5?text=Home'">
+                    </div>
+                    <p class="mt-4 font-bold text-slate-700 text-sm">功能聚合首页</p>
+                </div>
+                <!-- Screen 4 -->
+                <div class="flex flex-col items-center group">
+                    <div class="w-[200px] h-[430px] rounded-[24px] overflow-hidden mockup-shadow bg-white transition-transform duration-500 group-hover:-translate-y-4 delay-200">
+                        <img src="AI全能助理.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/300x600/E2E8F0/4F46E5?text=Chat'">
+                    </div>
+                    <p class="mt-4 font-bold text-slate-700 text-sm">沉浸式全能助理对话</p>
+                </div>
+                <!-- Screen 5 -->
+                <div class="flex flex-col items-center group relative top-10">
+                    <div class="bg-indigo-600 p-6 rounded-2xl shadow-xl w-[200px]">
+                        <h4 class="text-white font-bold mb-2 border-b border-indigo-400 pb-2">Visual Specs</h4>
+                        <div class="space-y-2 mt-4">
+                            <div class="h-6 rounded bg-[#4F46E5] flex items-center px-2 text-[10px] text-white">#4F46E5</div>
+                            <div class="h-6 rounded bg-[#8B5CF6] flex items-center px-2 text-[10px] text-white">#8B5CF6</div>
+                            <div class="h-6 rounded bg-[#0F172A] flex items-center px-2 text-[10px] text-white">#0F172A</div>
+                        </div>
+                        <p class="text-xs text-indigo-200 mt-4 leading-relaxed">主视觉采用高饱和度冷色系，契合AI科技属性，传递信赖感与专业度。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 11: 项目结果度量 Metrics -->
+    <section class="slide-wrapper reveal bg-white">
+        <div class="p-16 h-full flex flex-col justify-center relative">
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0MHY0MEgweiIgZmlsbD0ibm9uZSIvPjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjEiIGZpbGw9IiNlNGEzZTEiLz48L3N2Zz4=')] opacity-50"></div>
+            
+            <div class="text-center mb-12 relative z-10">
+                <div class="inline-block px-3 py-1 bg-green-100 text-green-700 font-black text-sm rounded mb-4 shadow-sm">FINAL RESULT</div>
+                <h2 class="text-4xl font-black text-slate-900 mb-4">商业与体验双赢的数据验证</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto">完美呼应最初制定的“五导家”业务诉求，通过设计驱动核心指标全面上涨。</p>
+            </div>
+
+            <div class="grid grid-cols-4 gap-6 relative z-10 max-w-5xl mx-auto w-full">
+                <!-- Metric 1 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-lg text-center hover:-translate-y-2 transition-transform">
+                    <div class="w-12 h-12 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl mx-auto mb-4"><i class="fas fa-user-check"></i></div>
+                    <p class="text-xs text-slate-500 font-bold mb-1">次月留存率提升</p>
+                    <h3 class="text-3xl font-black text-indigo-600 mb-2">45<span class="text-xl">%</span></h3>
+                    <p class="text-[10px] text-green-500 bg-green-50 rounded-full inline-block px-2 py-0.5"><i class="fas fa-arrow-up"></i> 原目标 30%</p>
+                </div>
+                
+                <!-- Metric 2 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-lg text-center hover:-translate-y-2 transition-transform">
+                    <div class="w-12 h-12 rounded-full bg-violet-50 text-violet-600 flex items-center justify-center text-xl mx-auto mb-4"><i class="fas fa-shopping-cart"></i></div>
+                    <p class="text-xs text-slate-500 font-bold mb-1">付费转化率增长</p>
+                    <h3 class="text-3xl font-black text-violet-600 mb-2">8.2<span class="text-xl">%</span></h3>
+                    <p class="text-[10px] text-green-500 bg-green-50 rounded-full inline-block px-2 py-0.5"><i class="fas fa-arrow-up"></i> 原目标 5%</p>
+                </div>
+
+                <!-- Metric 3 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-lg text-center hover:-translate-y-2 transition-transform">
+                    <div class="w-12 h-12 rounded-full bg-cyan-50 text-cyan-600 flex items-center justify-center text-xl mx-auto mb-4"><i class="fas fa-bolt"></i></div>
+                    <p class="text-xs text-slate-500 font-bold mb-1">平均操作时长缩短</p>
+                    <h3 class="text-3xl font-black text-cyan-600 mb-2">40<span class="text-xl">%</span></h3>
+                    <p class="text-[10px] text-slate-400 mt-1">从构思到出稿</p>
+                </div>
+
+                <!-- Metric 4 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-lg text-center hover:-translate-y-2 transition-transform">
+                    <div class="w-12 h-12 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center text-xl mx-auto mb-4"><i class="fas fa-smile"></i></div>
+                    <p class="text-xs text-slate-500 font-bold mb-1">生成内容满意度</p>
+                    <h3 class="text-3xl font-black text-rose-600 mb-2">92<span class="text-xl">%</span></h3>
+                    <p class="text-[10px] text-slate-400 mt-1">不满意率大幅下降</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 12: 总结致谢 -->
+    <section class="slide-wrapper reveal bg-gradient-ai text-white relative overflow-hidden">
+        <div class="absolute inset-0 z-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGgyMHYyMEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0wIDEwaDIwbTAtMTBINXYyMG0wLTEwaDE1IiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIwLjA1Ii8+PC9zdmc+')]"></div>
+        <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-10">
+            
+            <div class="w-24 h-24 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center mb-8 border border-white/20 shadow-[0_0_50px_rgba(255,255,255,0.2)]">
+                <i class="fas fa-fingerprint text-5xl text-white"></i>
+            </div>
+            
+            <h2 class="text-4xl md:text-6xl font-black mb-6 tracking-tight drop-shadow-lg">
+                让AI工具充满“人情味”
+            </h2>
+            <p class="text-lg text-indigo-100 max-w-3xl leading-relaxed mb-12 font-medium">
+                本此改版不仅是一次视觉的焕新，更是底层业务逻辑的重塑。通过“阿里五导家”的科学推导，我们将冰冷的参数配置转化为符合用户心理预期的向导交互，成功打通了从工具好用到商业变现的闭环。
+            </p>
+            
+            <div class="flex gap-12 text-center text-sm">
+                <div>
+                    <p class="text-indigo-200 uppercase font-bold tracking-widest mb-1">Role</p>
+                    <p class="text-white font-medium">UI/UX Designer</p>
+                </div>
+                <div class="w-px bg-white/20"></div>
+                <div>
+                    <p class="text-indigo-200 uppercase font-bold tracking-widest mb-1">Method</p>
+                    <p class="text-white font-medium">阿里五导家</p>
+                </div>
+            </div>
+
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 text-xs font-black tracking-[0.3em]">
+                THANKS FOR WATCHING
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll Reveal Animation Logic
+        document.addEventListener("DOMContentLoaded", function() {
+            const reveals = document.querySelectorAll(".reveal");
+
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const elementVisible = 100;
+
+                reveals.forEach((reveal) => {
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveal.classList.add("active");
+                    }
+                });
+            };
+
+            // Trigger once on load
+            revealOnScroll();
+
+            // Listen to scroll with basic throttling
+            let isScrolling = false;
+            window.addEventListener("scroll", () => {
+                if(!isScrolling) {
+                    window.requestAnimationFrame(() => {
+                        revealOnScroll();
+                        isScrolling = false;
+                    });
+                    isScrolling = true;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
